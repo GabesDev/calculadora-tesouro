@@ -133,7 +133,18 @@ const App = {
       bond.maturityDate
     );
 
-    UI.displayReinvestmentResults(result);
+    // Check if it's a Renda+ bond (Renda+ or Aposentadoria Extra)
+    const isRendaMais =
+      bond.name.includes("Renda+") || bond.name.includes("Aposentadoria Extra");
+
+    // Calculate monthly payment for Renda+ bonds
+    if (isRendaMais) {
+      result.monthlyPayment = Calculator.calculateMonthlyPayment(
+        result.netFutureValue
+      );
+    }
+
+    UI.displayReinvestmentResults(result, isRendaMais);
   },
 };
 

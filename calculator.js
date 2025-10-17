@@ -150,4 +150,10 @@ const Calculator = {
       iofRate: this.calculateIOFRate(days),
     };
   },
+
+  // Calculate monthly payment for Renda+ bonds (20 years of monthly payments)
+  calculateMonthlyPayment(totalValue) {
+    const months = 20 * 12; // 20 years = 240 months
+    return totalValue / months;
+  },
 };

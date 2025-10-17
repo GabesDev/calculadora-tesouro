@@ -67,7 +67,7 @@ const UI = {
     );
   },
 
-  displayReinvestmentResults(result) {
+  displayReinvestmentResults(result, isRendaMais = false) {
     this.elements.reinvestAmount.textContent = Formatter.formatCurrency(
       result.investedAmount
     );
@@ -77,6 +77,22 @@ const UI = {
     this.elements.reinvestReturn.textContent = `${Formatter.formatCurrency(
       result.returns
     )} (em ${result.years.toFixed(1)} anos)`;
+
+    // Show monthly payment row only for Renda+ bonds
+    const monthlyPaymentRow = document.getElementById("monthlyPaymentRow");
+    const monthlyPaymentValue = document.getElementById(
+      "reinvestMonthlyPayment"
+    );
+
+    if (isRendaMais && result.monthlyPayment) {
+      monthlyPaymentValue.textContent = Formatter.formatCurrency(
+        result.monthlyPayment
+      );
+      monthlyPaymentRow.style.display = "flex";
+    } else {
+      monthlyPaymentRow.style.display = "none";
+    }
+
     this.elements.reinvestmentResults.style.display = "block";
   },
 
