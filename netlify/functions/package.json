@@ -1,0 +1,11 @@
+{
+  "name": "treasury-netlify-functions",
+  "version": "1.0.0",
+  "description": "Netlify Functions for Treasury Calculator",
+  "main": "treasury-api.js",
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

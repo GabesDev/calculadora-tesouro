@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Tesouro Direto</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="glass glass-hover shimmer text-glow">
+        <h1>
+          💰 Calculadora de Tesouro Direto - Uso pessoal baseado no Prefixado
+          2029
+        </h1>
+        <p class="subtitle" id="headerSubtitle">
+          Acompanhe seus investimentos e simule reinvestimentos
+        </p>
+      </header>
+
+      <div class="card glass glass-hover shimmer text-glow">
+        <h2>📊 Dados do Seu Investimento</h2>
+        <form id="investmentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="investedAmount">Valor Investido (R$):</label>
+              <input
+                type="number"
+                id="investedAmount"
+                step="0.01"
+                value="10000.00"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contractedRate">Taxa Contratada (% a.a.):</label>
+              <input
+                type="number"
+                id="contractedRate"
+                step="0.01"
+                value="11.99"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="investmentDate">Data do Investimento:</label>
+              <input
+                type="date"
+                id="investmentDate"
+                value="2022-10-01"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="maturityDate">Data do Vencimento:</label>
+              <input
+                type="date"
+                id="maturityDate"
+                value="2029-01-01"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="marketRate">Taxa de Mercado Atual (% a.a.):</label>
+              <input
+                type="number"
+                id="marketRate"
+                step="0.01"
+                value="12.50"
+                required
+              />
+              <small>Digite a taxa atual para títulos similares</small>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-calculate">Calcular</button>
+        </form>
+      </div>
+
+      <div id="results" class="results" style="display: none">
+        <div class="results-grid">
+          <div class="card glass glass-hover text-glow result-card">
+            <h2>🎯 Valor no Vencimento (2029)</h2>
+            <div class="result-item">
+              <span class="label">Valor Bruto:</span>
+              <span class="value" id="grossMaturityValue">-</span>
+            </div>
+            <div class="result-item">
+              <span class="label">Impostos (IOF + IR):</span>
+              <span class="value" id="maturityTax">-</span>
+            </div>
+            <div class="result-item highlight">
+              <span class="label">Valor Líquido:</span>
+              <span class="value" id="netMaturityValue">-</span>
+            </div>
+            <div class="result-item">
+              <span class="label">Rendimento Total:</span>
+              <span class="value" id="maturityReturn">-</span>
+            </div>
+          </div>
+
+          <div class="card glass glass-hover text-glow result-card">
+            <h2>📈 Valor Atual (Marcação a Mercado)</h2>
+            <div class="result-item">
+              <span class="label">Valor Bruto Hoje:</span>
+              <span class="value" id="grossCurrentValue">-</span>
+            </div>
+            <div class="result-item">
+              <span class="label">Impostos (IOF + IR):</span>
+              <span class="value" id="currentTax">-</span>
+            </div>
+            <div class="result-item highlight">
+              <span class="label">Valor Líquido Hoje:</span>
+              <span class="value" id="netCurrentValue">-</span>
+            </div>
+            <div class="result-item">
+              <span class="label">Rendimento até Hoje:</span>
+              <span class="value" id="currentReturn">-</span>
+            </div>
+            <div class="info-box">
+              <strong>💡 Nota:</strong> A marcação a mercado considera a taxa
+              atual do mercado.
+            </div>
+          </div>
+        </div>
+
+        <div class="card glass glass-hover text-glow result-card">
+          <h2>🔄 Simulação de Reinvestimento</h2>
+
+          <div class="reinvestment-container">
+            <div class="reinvestment-bonds">
+              <h3>Opções de Títulos Disponíveis</h3>
+              <div id="availableBonds">
+                <!-- Títulos serão carregados aqui -->
+              </div>
+            </div>
+
+            <div class="reinvestment-results-wrapper">
+              <div id="reinvestmentResults">
+                <h3>Resultado da Simulação</h3>
+                <div class="result-item">
+                  <span class="label">Valor a Reinvestir:</span>
+                  <span class="value" id="reinvestAmount">-</span>
+                </div>
+                <div class="result-item highlight">
+                  <span class="label">Valor Futuro Estimado:</span>
+                  <span class="value" id="reinvestFutureValue">-</span>
+                </div>
+                <div class="result-item">
+                  <span class="label">Rendimento Estimado:</span>
+                  <span class="value" id="reinvestReturn">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card glass glass-hover text-glow info-card">
+          <h3>ℹ️ Imposto de Renda</h3>
+          <ul>
+            <li><strong>Até 180 dias:</strong> 22,5%</li>
+            <li><strong>De 181 a 360 dias:</strong> 20,0%</li>
+            <li><strong>De 361 a 720 dias:</strong> 17,5%</li>
+            <li><strong>Acima de 720 dias:</strong> 15,0%</li>
+          </ul>
+          <p class="note">
+            O IR incide apenas sobre o rendimento, não sobre o valor investido.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="glass glass-hover text-glow">
+      <p>Calculadora de Tesouro Direto - Para fins pessoais</p>
+      <p>
+        <small
+          >Os valores são estimativas. Consulte sempre seu agente de custódia
+          para valores exatos.</small
+        >
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

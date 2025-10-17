@@ -1,0 +1,29 @@
+{
+  "name": "calculadora-tesouro-direto",
+  "version": "1.0.0",
+  "description": "Calculadora de Tesouro Direto - Ferramenta para análise de investimentos em títulos públicos",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "tesouro-direto",
+    "investimentos",
+    "calculadora",
+    "titulos-publicos",
+    "brasil",
+    "financas"
+  ],
+  "author": "GabesDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GabesDev/calculadora-tesouro.git"
+  },
+  "homepage": "https://tesouro.gabes.dev",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
